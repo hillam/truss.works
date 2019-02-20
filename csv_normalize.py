@@ -42,9 +42,6 @@ def main():
         # Timestamp
         row[0] = normalize_timestamp(row[0])
 
-        # Address
-        row[1] = normalize_address(row[1])
-
         # Zipcode
         row[2] = normalize_zipcode(row[2])
 
@@ -60,9 +57,6 @@ def main():
         # Total Duration
         total_duration = foo_duration + bar_duration
         row[6] = str(total_duration)
-
-        # Notes
-        row[7] = normalize_notes(row[7])
 
         normalized_csv.append(row)
     # end row in csv_reader
