@@ -1,29 +1,33 @@
 #!/usr/bin/python
 import csv
 import sys
+from datetime import timedelta
+from dateutil.parser import parse
 
+# Convert "HH:MM:SS.MS" to
 def convert_duration(duration):
-    return duration
+    hours, minutes, seconds = duration.split(':')
+    total_seconds = float(seconds)
+    total_seconds += float(minutes) * 60
+    total_seconds += float(hours) * 3600
+    return total_seconds
 # end convert_duration
 
-def normalize_address(address):
-    return address
-# end normalize_address
-
 def normalize_name(name):
-    return name
+    return name.upper()
 # end normalize_name
 
-def normalize_notes(notes):
-    return notes
-# end normalize_notes
-
 def normalize_timestamp(timestamp):
-    return timestamp
+    timestamp = parse(timestamp)
+    # Convert from EST to PST
+    timestamp = timestamp - timedelta(hours=3)
+    # Return ISO-8601 format
+    return timestamp.isoformat()
 # end normalize_timestamp
 
 def normalize_zipcode(zipcode):
-    return zipcode
+    # Front-pad with 0's to ensure 5-char zip
+    return format(int(zipcode), '05')
 # end normalize_zipcode
 
 def main():
