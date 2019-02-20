@@ -74,7 +74,7 @@ def main():
             normalized_csv.append(row)
         except:
             # If any part of the row can't be processed, skip it
-            print >>sys.stderr, "error processing row - skipping..."
+            sys.stderr.write('error processing row - skipping...\n');
     # end row in csv_reader
 
     csv_writer.writerows(normalized_csv)
